@@ -1,4 +1,3 @@
-const { json } = require("express");
 const client = require("../db/client");
 const TABLE = require("../db/config");
 
