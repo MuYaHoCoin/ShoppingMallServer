@@ -4,5 +4,9 @@
 using express mysql
 
 how to run :
-1. npm i nodemon
-2. nodemon server.js
+```
+npm i nodemon
+```
+```
+nodemon server.js
+```
