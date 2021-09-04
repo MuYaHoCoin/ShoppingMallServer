@@ -1,6 +1,4 @@
 const express = require("express");
-const makeAddress = require("./functions/key_management/make_address");
-const transactions = require("./routers/transaction_router");
 const app = express();
 const port = 3000;
 
