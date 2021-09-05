@@ -135,7 +135,6 @@ module.exports = {
     }
   },
   createGoods: (req, res) => {
-    console.log("routes success");
     try {
       goodsModel.create(
         req.body.name,
@@ -159,6 +158,30 @@ module.exports = {
       });
     }
   },
-  updateGoods: (req, res) => {},
+  updateGoods: (req, res) => {
+    try {
+      goodsModel.update(
+        req.body.nameOrigin,
+        req.body.nameChange,
+        req.body.priceChange,
+        req.body.sellerIdChange,
+        (result) => {
+          console.log(result);
+          res.status(201);
+          res.send({
+            success: true,
+            result,
+          });
+        }
+      );
+    } catch (error) {
+      console.log(`Error : ${error}`);
+      res.status(400);
+      res.send({
+        success: false,
+        message: `Error :  ${error}`,
+      });
+    }
+  },
   deleteGoods: (req, res) => {},
 };

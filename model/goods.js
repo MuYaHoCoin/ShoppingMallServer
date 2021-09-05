@@ -6,8 +6,8 @@ module.exports = {
     const query = `SELECT * FROM ${TABLE.TB_GOODS}`;
     return await client.query(query, (error, result, fields) => {
       if (error) {
-        console.log(err);
-        throw err;
+        console.log(error);
+        throw error;
       } else {
         results(JSON.parse(JSON.stringify(result)));
       }
@@ -18,8 +18,8 @@ module.exports = {
     const query = `SELECT * FROM ${TABLE.TB_GOODS} WHERE name = ?`;
     return await client.query(query, [name], (error, result, fields) => {
       if (error) {
-        console.log(err);
-        throw err;
+        console.log(error);
+        throw error;
       } else {
         results(JSON.parse(JSON.stringify(result)));
       }
@@ -30,8 +30,8 @@ module.exports = {
     const query = `SELECT ${TABLE.TB_GOODS}.* FROM ${TABLE.TB_GOODS}, ${TABLE.TB_SELLER} WHERE ${TABLE.TB_GOODS}.seller_id = ${TABLE.TB_SELLER}.id and ${TABLE.TB_SELLER}.name = ?`;
     return await client.query(query, [sellerName], (error, result, fields) => {
       if (error) {
-        console.log(err);
-        throw err;
+        console.log(error);
+        throw error;
       } else {
         results(JSON.parse(JSON.stringify(result)));
       }
@@ -42,8 +42,8 @@ module.exports = {
     const query = `SELECT * FROM ${TABLE.TB_GOODS} WHERE seller_id = ?`;
     return await client.query(query, [sellerId], (error, result, fields) => {
       if (error) {
-        console.log(err);
-        throw err;
+        console.log(error);
+        throw error;
       } else {
         results(JSON.parse(JSON.stringify(result)));
       }
@@ -54,8 +54,8 @@ module.exports = {
     const query = `SELECT * FROM ${TABLE.TB_GOODS} WHERE price = ?`;
     return await client.query(query, [price], (error, result, fields) => {
       if (error) {
-        console.log(err);
-        throw err;
+        console.log(error);
+        throw error;
       } else {
         results(JSON.parse(JSON.stringify(result)));
       }
@@ -66,8 +66,8 @@ module.exports = {
     const query = `SELECT * FROM ${TABLE.TB_GOODS} WHERE price >= ?`;
     return await client.query(query, [price], (error, result, fields) => {
       if (error) {
-        console.log(err);
-        throw err;
+        console.log(error);
+        throw error;
       } else {
         results(JSON.parse(JSON.stringify(result)));
       }
@@ -78,8 +78,8 @@ module.exports = {
     const query = `SELECT * FROM ${TABLE.TB_GOODS} WHERE price <= ?`;
     return await client.query(query, [price], (error, result, fields) => {
       if (error) {
-        console.log(err);
-        throw err;
+        console.log(error);
+        throw error;
       } else {
         results(JSON.parse(JSON.stringify(result)));
       }
@@ -93,7 +93,7 @@ module.exports = {
       [name, price, sellerId],
       (error, result, fields) => {
         if (error) {
-          console.log(err);
+          console.log(error);
           throw error;
         } else {
           results(JSON.parse(JSON.stringify(result)));
@@ -102,7 +102,39 @@ module.exports = {
     );
   },
 
-  update: async (results) => {},
+  update: async (
+    nameOrigin,
+    nameChange,
+    priceChange,
+    sellerIdChange,
+    results
+  ) => {
+    const query = `UPDATE ${TABLE.TB_GOODS} SET name = ?, price = ?, seller_id = ? WHERE name = ?`;
+    return await client.query(
+      query,
+      [nameChange, priceChange, sellerIdChange, nameOrigin],
+      (error, result, fields) => {
+        if (error) {
+          console.log(error);
+          throw error;
+        } else {
+          results(JSON.parse(JSON.stringify(result)));
+        }
+      }
+    );
+  },
 
-  delete: async (results) => {},
+  deleteById: async (id, results) => {
+    const query = `DELETE FROM ${TABLE.TB_GOODS} WHERE id = ?`;
+    return await client.query(query, [id], (error, result, fields) => {
+      if (error) {
+        console.log(err);
+        throw error;
+      } else {
+        results(JSON.parse(JSON.stringify(result)));
+      }
+    });
+  },
+
+  deleteByName: async (results) => {},
 };
