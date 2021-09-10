@@ -6,8 +6,9 @@ const xpub =
 
 makeAddress = () => {
   const { address } = bitcoin.payments.p2pkh({
-    pubkey: bip32.fromBase58(xpub).derive(0).derive(2).publicKey,
+    pubkey: bip32.fromBase58(xpub).derive(0).derive(1).publicKey,
   });
+  
   return address;
 };
 

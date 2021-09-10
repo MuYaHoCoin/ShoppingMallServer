@@ -32,12 +32,10 @@ router.post("/goods/delete", goodsController.deleteGoods);
 
 //transaction CRUD
 router.get("/transaction", transacionController.getAllTransactions);
-router.get(
-  "/transaction/is_pending/:address",
-  transacionController.isTransactionPending
-);
+router.get("/transaction/is_pending/:address",transacionController.isTransactionPending);
+router.get("/transaction/new/address", transacionController.getNewIncomingAddress);
 router.get("/transaction/id/:id", transacionController.getTransactionById);
 router.post("/transaction/make");
-router.post("/transaction/qr");
+router.get("/transaction/qr", transacionController.getQRCode);
 
 module.exports = router;
