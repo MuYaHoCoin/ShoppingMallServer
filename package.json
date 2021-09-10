@@ -12,9 +12,11 @@
   "dependencies": {
     "bip32": "^2.0.6",
     "bitcoinjs-lib": "^5.2.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.12",
+    "qr-image": "^3.2.0",
     "yarn": "^1.22.11"
   }
 }
